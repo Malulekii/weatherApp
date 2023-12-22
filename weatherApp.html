@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0"> 
+    <title>The waether App</title>
+    <link rel="stylesheet" href="Design.css">
+
+</head>
+
+<body>
+    <div class="card">
+            <div class="search">
+            <input type="text" placeholder="Enter City " spellcheck="false">
+
+                  <button><img src="c:\Users\Misokuhle Mathebula\Pictures\download.png"></button>
+        </div>
+
+            
+            <div class="weather">
+                 <img src="c:\Users\Misokuhle Mathebula\Pictures\rain.png" class="weather-icon">
+                 <h1 class="temp">22°c</h1>
+                 <h2 class="city">Pretoria</h2>
+                    <div class="details">
+                       <div class="col">
+                            <img src="c:\Users\Misokuhle Mathebula\Pictures\humidity.png">
+                            <div>
+                                 <p class="humidity">50%</p>  
+                                 <p>Humidity</p>                 
+                            </div>  
+                       </div>
+
+                       <div class="col">
+                        <img src="c:\Users\Misokuhle Mathebula\Pictures\wind.png">
+                        <div>
+                             <p class="wind">15 km/h</p>  
+                             <p>Wind speed</p>  
+                   </div>              
+                        </div>  
+                   </div>
+            </div>
+    </div>
+
+ <script>
+
+     const apiKey="1a3c327920e399fb6d2d04d0d8b0c043";
+     const apiUrl = "https://api.weather.gov/gridpoints/MTR/84,105/forecast&q=Pretoria";
+
+     const searchBox = ducoment.querySelector(".search input");
+     const searchBtn = ducoment.querySelector(".search button");
+
+     async function checkWeather()
+     {
+     const responce = await fetch(apiUrl + city + `&appid=${apiKey}`);
+
+
+     var data = await responce.json();
+
+     console.log(data);
+
+     document.querySelector(".city").innerHTML = data.name;
+     document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c" ;
+     document.querySelector(".humidity").innerHTML = data.main.himidity + "%";
+     document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
+
+    }
+
+
+      checkWeather(searchBox.value);
+
+ </script>
+
+
+</body>
+
+</html>
